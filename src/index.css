@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/800.css";
+
+@layer base {
+  :root {
+    --background: 222 47% 3%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 270 91% 65%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 270 91% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 270 30% 20%;
+    --input: 222 47% 12%;
+    --ring: 270 91% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --neon-purple: 270 91% 65%;
+    --neon-blue: 217 91% 60%;
+    --neon-pink: 330 91% 65%;
+    --neon-green: 142 76% 45%;
+    --deep-space: 222 47% 3%;
+    --glass: 222 47% 8%;
+    
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-purple)), hsl(var(--neon-blue)));
+    --gradient-glow: linear-gradient(180deg, hsl(var(--neon-purple) / 0.3), transparent);
+    --shadow-neon: 0 0 30px hsl(var(--neon-purple) / 0.5);
+    --shadow-neon-sm: 0 0 15px hsl(var(--neon-purple) / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+  }
+  
+  .neon-border {
+    @apply border border-primary/50 shadow-[0_0_15px_hsl(var(--neon-purple)/0.3)];
+  }
+  
+  .neon-glow {
+    @apply shadow-[0_0_30px_hsl(var(--neon-purple)/0.5)];
+  }
+  
+  .neon-text {
+    @apply text-primary drop-shadow-[0_0_10px_hsl(var(--neon-purple)/0.8)];
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent;
+  }
+  
+  .btn-neon {
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-6 rounded-lg 
+           shadow-[0_0_20px_hsl(var(--neon-purple)/0.4)] hover:shadow-[0_0_30px_hsl(var(--neon-purple)/0.6)]
+           transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-glass {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 text-foreground font-semibold 
+           py-3 px-6 rounded-lg hover:bg-card/80 hover:border-primary/50 transition-all duration-300;
+  }
+  
+  .input-neon {
+    @apply bg-input border border-border/50 rounded-lg px-4 py-3 text-foreground 
+           focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none
+           placeholder:text-muted-foreground transition-all duration-300;
+  }
+  
+  .status-online {
+    @apply text-green-400 drop-shadow-[0_0_8px_hsl(142_76%_45%/0.8)];
+  }
+  
+  .status-offline {
+    @apply text-red-400 drop-shadow-[0_0_8px_hsl(0_84%_60%/0.8)];
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.4); }
+    to { box-shadow: 0 0 40px hsl(var(--neon-purple) / 0.8); }
+  }
+}
